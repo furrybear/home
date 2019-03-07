@@ -1,0 +1,10 @@
+/*
+!/.github/
+!/.gitignore
+!/.zshrc
+!/.tmux.conf
+!/.vimrc
+!/.vim/templates
+!/.emacs
+!/vm-net-cfgs/
+!/reinstall.sh
