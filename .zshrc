@@ -41,8 +41,9 @@ if check_output=$(type trash-put);then
 else
     echo -e "${RED_TEXT}${check_output}${ORIGIN_TEXT}"
 fi
-alias su='cygstart --action=runas mintty -'
-alias sudo='sudo'
+
+#alias su='cygstart --action=runas mintty -'
+alias sudo='sudo '
 alias v='ssh bear-vm'
 if [ -d "$HOME/bear-local/code" ];then
     alias cdcode="cd $HOME/bear-local/code"
