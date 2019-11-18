@@ -49,6 +49,9 @@ if [ -d "$HOME/bear-local/code" ];then
     alias cdcode="cd $HOME/bear-local/code"
     echo -e "${GREEN_TEXT}Alias ${YELLOW_TEXT}cdcode ${GREEN_TEXT}was set${ORIGIN_TEXT}"
 fi
+ssh-copy-id-ssh(){
+    ssh-copy-id $1 && ssh $1
+}
 #######################
 # Oh-my-zsh Settings
 #######################
