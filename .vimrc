@@ -24,3 +24,5 @@ autocmd BufNewFile *.sh 0r ~/.vim/templates/tmpl.sh
 set pastetoggle=<F2>
 "Write with admin priviledge. Vim will replace sudow with the later comamnd.
 cnoreabbrev sudow w !sudo tee %
+let mapleader = ","
+nnoremap <leader>v <C-V>
