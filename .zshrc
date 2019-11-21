@@ -29,8 +29,8 @@ fi
 # Command settings
 #######################
 
-git config --global user.name "Furrybear";
-git config --global user.email "fbcll@outlook.com";
+#git config --global user.name "Furrybear";
+#git config --global user.email "fbcll@outlook.com";
 alias gitpush='git add .;git status;git commit -m "Some change.";git push';
 echo -e "${GREEN_TEXT}Alias ${YELLOW_TEXT}gitpush ${GREEN_TEXT}was set${ORIGIN_TEXT}";
 
