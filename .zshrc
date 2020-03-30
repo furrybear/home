@@ -52,6 +52,10 @@ fi
 ssh-copy-id-ssh(){
     ssh-copy-id $1 && ssh $1
 }
+
+ssh-tar(){
+    ssh $1 tar -czvf - -X $2/.tarignore $2 > $2.tgz
+}
 #######################
 # Oh-my-zsh Settings
 #######################
