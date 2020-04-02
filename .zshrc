@@ -56,6 +56,16 @@ ssh-copy-id-ssh(){
 ssh-tar(){
     ssh $1 tar -czvf - -X $2/.tarignore $2 > $2.tgz
 }
+backup(){
+    if [ ! -d .backup ];then
+        mkdir .backup
+    fi
+    if [ -f $1/.tarignore ];then
+        tar -czvf .backup/$1.tgz -X $1/.tarignore $1 
+    else
+        tar -czvf .backup/$1.tgz $1 
+    fi
+}
 #######################
 # Oh-my-zsh Settings
 #######################
