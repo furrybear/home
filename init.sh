@@ -50,13 +50,13 @@ function clone_submodule(){
 function install_trash_cli(){
     if ! command -v trash-put > /dev/null 2>&1;then
         query_user "install trash-cli" &&
-        pip3 install trash-cli
+        python3 -m pip install --user trash-cli
     fi
 }
 function install_tmux(){
     if ! command -v tmux > /dev/null 2>&1;then
         query_user "install tmux" &&
-        yum install -y tmux
+        sudo yum install -y tmux
     fi
 }
 #----------------------
