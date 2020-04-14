@@ -26,3 +26,4 @@ set pastetoggle=<F2>
 cnoreabbrev sudow w !sudo tee %
 let mapleader = ","
 nnoremap <leader>v <C-V>
+nnoremap <leader>2 <F2>
