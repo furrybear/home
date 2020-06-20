@@ -102,6 +102,23 @@ function install_tmux(){
         fi
     fi
 }
+function install_docker(){
+    if ! command -v docker > /dev/null 2>&1;then
+        if query_user "install docker";then
+            if [ $PM == "yum" ];then
+                sudo yum install -y yum-utils
+                sudo yum-config-manager \
+                    --add-repo \
+                        https://download.docker.com/linux/centos/docker-ce.repo
+                sudo yum install -y docker-ce docker-ce-cli containerd.io
+                sudo usermod -a -G docker $USER
+            else
+                echo "Package Manager $PM is not supported now."
+            fi
+        fi
+    fi
+}
+
 function change_default_shell(){
     if command -v zsh > /dev/null 2>&1 && [ ! -d "$HOME/.oh-my-zsh" ];then
         if query_user "change default shell to zsh";then
@@ -120,5 +137,6 @@ install_zsh
 clone_oh_my_zsh
 install_trash_cli
 install_tmux
+install_docker
 change_default_shell
 echo -e "${CYAN_TEXT}Done!${ORIGIN_TEXT}"
