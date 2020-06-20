@@ -12,6 +12,8 @@ git reset --hard origin/master
 git branch -u origin/master master
 ```
 
+`reinstall.sh` should be executed via `bash reinstall.sh` on Ubuntu ,for the `sh` is a link to `dash` which is not incompatible with the origin `sh`.
+
 ## In Cygwin
 
 Run following commands:
