@@ -96,9 +96,8 @@ function clone_oh_my_zsh(){
 function install_trash_cli(){
     if ! command -v trash-put > /dev/null 2>&1;then
         if query_user "install trash-cli";then
-            [ $PM == "yum" ] && sudo $PM install -y epel-release
-            sudo $PM install -y python-pip
-            sudo python -m pip install trash-cli
+            [ $PM == "yum" ] && sudo yum install -y epel-release && sudo yum install -y python-pip && sudo python -m pip install trash-cli
+            [ $DISTRO == "Ubuntu" ] && sudo apt install -y trash-cli
         fi
     fi
 }
