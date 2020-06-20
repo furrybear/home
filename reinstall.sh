@@ -127,7 +127,7 @@ function install_docker(){
 }
 
 function change_default_shell(){
-    if command -v zsh > /dev/null 2>&1 && [ ! -d "$HOME/.oh-my-zsh" ];then
+    if command -v zsh > /dev/null 2>&1 && [ -d "$HOME/.oh-my-zsh" ];then
         if query_user "change default shell to zsh";then
             sudo chsh -s $(which zsh) $USER
         fi
@@ -139,6 +139,7 @@ function change_default_shell(){
 get_distro_name
 if [ $DISTRO == "unknown" ];then echo "Unknown distribution!";exit 1;fi
 
+install_vim
 install_git
 install_zsh
 clone_oh_my_zsh
