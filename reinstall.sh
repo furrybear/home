@@ -65,10 +65,10 @@ function get_distro_name()
 #----------------------
 # Functional functions.
 #----------------------
-function install_zsh(){
-    if ! command -v zsh > /dev/null 2>&1;then
-        if query_user "install zsh";then
-            sudo $PM install -y zsh 
+function install_vim(){
+    if ! command -v vim > /dev/null 2>&1;then
+        if query_user "install vim";then
+            sudo $PM install -y vim 
         fi
     fi
 }
@@ -76,6 +76,13 @@ function install_git(){
     if ! command -v git > /dev/null 2>&1;then
         if query_user "install git";then
             sudo $PM install -y git 
+        fi
+    fi
+}
+function install_zsh(){
+    if ! command -v zsh > /dev/null 2>&1;then
+        if query_user "install zsh";then
+            sudo $PM install -y zsh 
         fi
     fi
 }
@@ -89,7 +96,7 @@ function clone_oh_my_zsh(){
 function install_trash_cli(){
     if ! command -v trash-put > /dev/null 2>&1;then
         if query_user "install trash-cli";then
-            [ $PM -eq "yum" ] && sudo $PM install -y epel-release
+            [ $PM == "yum" ] && sudo $PM install -y epel-release
             sudo $PM install -y python-pip
             sudo python -m pip install trash-cli
         fi
