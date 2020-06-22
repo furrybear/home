@@ -16,26 +16,26 @@ ORIGIN_TEXT='\033[0m'
 #----------------------
 # Tool functions.
 #----------------------
-function query_user(){
-    echo -e "Do you want to ${YELLOW_TEXT}$1${ORIGIN_TEXT}? [Y/n] " 
+query_user(){
+    printf "Do you want to ${YELLOW_TEXT}$1${ORIGIN_TEXT}? [Y/n]\n" 
     read -r input
 
     case $input in
         [yY][eE][sS]|[yY])
-            echo -e "The user input is ${GREEN_TEXT}yes${ORIGIN_TEXT} for \"${YELLOW_TEXT}$1${ORIGIN_TEXT}.\""
+            printf "The user input is ${GREEN_TEXT}yes${ORIGIN_TEXT} for \"${YELLOW_TEXT}$1${ORIGIN_TEXT}.\"\n"
             return 0
             ;;
         [nN][oO]|[nN])
-            echo -e "The user input is ${RED_TEXT}no${ORIGIN_TEXT} for \"${YELLOW_TEXT}$1${ORIGIN_TEXT}.\""
+            printf "The user input is ${RED_TEXT}no${ORIGIN_TEXT} for \"${YELLOW_TEXT}$1${ORIGIN_TEXT}.\"\n"
             return 1
             ;;
         *)
-            echo "${RED_TEXT}Invalid input...${ORIGIN_TEXT}"
+            printf "${RED_TEXT}Invalid input...${ORIGIN_TEXT}\n"
             return 1
             ;;
     esac 
 }
-function get_distro_name()
+get_distro_name()
 {
     if grep -Eqi "CentOS" /etc/issue || grep -Eq "CentOS" /etc/*-release; then
         DISTRO='CentOS'
@@ -65,53 +65,53 @@ function get_distro_name()
 #----------------------
 # Functional functions.
 #----------------------
-function install_vim(){
+install_vim(){
     if ! command -v vim > /dev/null 2>&1;then
         if query_user "install vim";then
             sudo $PM install -y vim 
         fi
     fi
 }
-function install_git(){
+install_git(){
     if ! command -v git > /dev/null 2>&1;then
         if query_user "install git";then
             sudo $PM install -y git 
         fi
     fi
 }
-function install_zsh(){
+install_zsh(){
     if ! command -v zsh > /dev/null 2>&1;then
         if query_user "install zsh";then
             sudo $PM install -y zsh 
         fi
     fi
 }
-function clone_oh_my_zsh(){
+clone_oh_my_zsh(){
     if [ ! -d "$HOME/.oh-my-zsh" ];then
         if query_user "clone oh-my-zsh to local";then
             git clone https://github.com/robbyrussell/oh-my-zsh.git .oh-my-zsh
         fi
     fi
 }
-function install_trash_cli(){
+install_trash_cli(){
     if ! command -v trash-put > /dev/null 2>&1;then
         if query_user "install trash-cli";then
-            [ $PM == "yum" ] && sudo yum install -y epel-release && sudo yum install -y python-pip && sudo python -m pip install trash-cli
-            [ $DISTRO == "Ubuntu" ] && sudo apt install -y trash-cli
+            [ $PM = "yum" ] && sudo yum install -y epel-release && sudo yum install -y python-pip && sudo python -m pip install trash-cli
+            [ $DISTRO = "Ubuntu" ] && sudo apt install -y trash-cli
         fi
     fi
 }
-function install_tmux(){
+install_tmux(){
     if ! command -v tmux > /dev/null 2>&1;then
         if query_user "install tmux";then
             sudo $PM install -y tmux
         fi
     fi
 }
-function install_docker(){
+install_docker(){
     if ! command -v docker > /dev/null 2>&1;then
         if query_user "install docker";then
-            if [ $PM == "yum" ];then
+            if [ $PM = "yum" ];then
                 sudo yum install -y yum-utils
                 sudo yum-config-manager \
                     --add-repo \
@@ -125,7 +125,7 @@ function install_docker(){
     fi
 }
 
-function change_default_shell(){
+change_default_shell(){
     if command -v zsh > /dev/null 2>&1 && [ -d "$HOME/.oh-my-zsh" ];then
         if query_user "change default shell to zsh";then
             sudo chsh -s $(which zsh) $USER
@@ -136,7 +136,7 @@ function change_default_shell(){
 # Main.
 #----------------------
 get_distro_name
-if [ $DISTRO == "unknown" ];then echo "Unknown distribution!";exit 1;fi
+if [ $DISTRO = "unknown" ];then echo "Unknown distribution!";exit 1;fi
 
 install_vim
 install_git
@@ -146,4 +146,4 @@ install_trash_cli
 install_tmux
 install_docker
 change_default_shell
-echo -e "${CYAN_TEXT}Done!${ORIGIN_TEXT}"
+printf "${CYAN_TEXT}Done!${ORIGIN_TEXT}\n"
