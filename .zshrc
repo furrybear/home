@@ -66,6 +66,10 @@ backup(){
         tar -czvf .backup/$1.tgz $1 
     fi
 }
+mk-remote-git-dir(){
+    if [ $# -ne 2 ];then echo "Number of params is not correct.";return 1;fi
+    echo "mkdir \"$2\" && cd \"$2\" && git init && git config --local receive.denyCurrentBranch ignore && echo \"#!/bin/sh\\nunset GIT_DIR\\ncd ..\\ngit reset --hard HEAD\" > .git/hooks/post-update && chmod u+x .git/hooks/post-update" | ssh $1 sh -
+}
 #######################
 # Oh-my-zsh Settings
 #######################
