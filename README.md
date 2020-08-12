@@ -1,21 +1,13 @@
-# Furrybear's home
+# Furrybear's Home Direcotory Configuration for UNIX and UNIX-like OS.
 
-## In Linux
+Just download the only [release](https://github.com/furrybear/home/releases/tag/refs%2Fheads%2Fmaster), and extract it to the home directory.
 
-Upload the ssh key and run following commands:
+Or run following commands:
 
 ```sh
 git init
-git remote add origin git@github.com:furrybear/home.git
+git remote add origin https://github.com/furrybear/home.git
 git remote update
 git reset --hard origin/master
 git branch -u origin/master master
-```
-## In Cygwin
-
-Run following commands:
-
-```sh
-git init --separate-git-dir=~/bear-tent/configs/unix_home/home.git .
-git reset --hard master
 ```
